@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <div class="content-wrapper">
+         {% include 'header.html' %}
+         {% include 'menu.html' %}
+        <section class="content-header">
+          <h1>
+              {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
+                Cadastro de usuário.
+              {% else %}
+                Alteração de usuário
+              {% endif %}
+          </h1>
+        </section>
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+                  {% if messages %}
+                        {% for m in messages %}
+                            {% if m.tags == "success" %}
+                                  <div class="alert alert-success alert-dismissible" >
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                    {{m}}
+                                  </div>
+                            {% elif m.tags == "error" %}
+                                  <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                      {{m}}
+                                  </div>
+                            {% endif %}
+                        {% endfor %}
+                  {% endif %}
+                <!-- /.box-header -->
+
+                <!-- general form elements -->
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Formulário de Cadastro</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                  <form role="form" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group">
+                          <label>Nome:</label>
+                          {{form.first_name}}
+                        </div>
+                        <div class="form-group">
+                          <label>Sobrenome:</label>
+                          {{form.last_name}}
+                        </div>
+                        <div class="form-group">
+                          <label>Email:</label>
+                           {{form.email}}
+                        </div>
+                        {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
+                        <div class="form-group">
+                          <label>Senha:</label>
+                           {{form.password}}
+                        </div>
+                        {% endif %}
+                          <div class="form-group">
+                            <label for="customFile">Foto de Perfil</label>
+                            <div class="custom-file">
+                               <input type="file" class="custom-file-input" name="imagem" id="customFile">
+                              <label class="custom-file-label" for="customFile">Escolha o arquivo</label>
+                            </div>
+                          </div>
+                        <div class="checkbox">
+                          <label>
+                              {{ form.is_active }} Ativo
+                          </label>
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                              {{ form.is_staff }} Administrador
+                          </label>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                  <!-- /.box-body -->
+                    <div class="card-footer">
+                      <a href="{% url 'users:Usuarios' %}"  class="btn btn-default">Voltar</a>
+                        {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
+                      <button type="submit" class="btn btn-primary float-right ">Adicionar</button>
+                        {% else %}
+                      <button type="submit" class="btn btn-primary float-right ">Atualizar</button>
+                        {% endif %}
+                    </div>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+    </div><!-- /.content-wrapper -->
+{% include 'footer.html' %}
+
+{% endblock %}
+

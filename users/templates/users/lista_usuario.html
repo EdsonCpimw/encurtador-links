@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <div class="content-wrapper">
+         {% include 'header.html' %}
+         {% include 'menu.html' %}
+        <section class="content-header">
+          <h1>
+            Bem vindo a lista de usuário.
+          </h1>
+        </section>
+        {% if messages %}
+            {% for m in messages %}
+                {% if m.tags == "success" %}
+                      <div class="alert alert-success alert-dismissible" >
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-check"></i> Informação!</h4>
+                        {{m}}
+                      </div>
+                {% elif m.tags == "error" %}
+                      <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Informação!</h4>
+                          {{m}}
+                      </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <a href="{% url 'users:Cadastro_usuario' %}" class="btn btn-primary">Adicionar</a>
+                    <table id="usuarios" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>Id Usuário</th>
+                        <th>Nome completo</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                     {% if usuarios %}
+                     {% for usuario in usuarios %}
+                    <tr>
+                      <td>{{ usuario.id }}</td>
+                      <td>{{ usuario.get_full_name }}</td>
+                      <td>{{ usuario.email }}</td>
+                      <td>{{ usuario.is_active }}</td>
+                      <td>
+                          <a href="{% url 'users:usuario_Detail' pk=usuario.id %}">
+                              <i class="nav-icon far fa-clipboard" style="margin-right: 10px;"></i>
+                          </a>
+                          <a href="{% url 'users:Update_usuario' pk=usuario.id %}">
+                              <i class="nav-icon fas fa-edit" style="margin-right: 10px;"></i>
+                          </a>
+                          <a  href="{% url 'users:Delete_usuario' pk=usuario.id %}"  data-toggle="modal"
+                              data-target="#modal{{ usuario.id }}"> <i class="nav-icon far fa-trash-alt"
+                              onclick="delete_user(this)"></i>
+                          </a>
+                      </td>
+                    </tr>
+                     <!-- INICIO DO MODAL -->
+                      <div class="exemplo" >
+                         <div class="modal fade" id="modal{{ usuario.id }}">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Excluir usuário</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Deseja excluir o Usuário: <span>{{ usuario.get_full_name }}</span></p>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+<!--                                  <a href="{% url 'users:Delete_usuario' pk=usuario.id %}" type="button" class="btn btn-danger">Excluir</a>-->
+                                    <form method="POST" action="{% url 'users:Delete_usuario' pk=usuario.id %}" id="item-delete-form">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger" id="confirm-delete-item-button">Excluir</button>
+                                    </form>
+                                </div>
+
+                              </div>
+                              <!-- /.modal-content -->
+                         </div>
+                      </div><!-- fim /.modal -->
+                     {% endfor %}
+                     {% else %}
+                        <h4 class="box-title">
+                            Desculpe, nada foi encontrado!
+                        </h4>
+                     {% endif %}
+
+                      </tbody>
+
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+      </div><!-- /.content-wrapper -->
+      {% include 'footer.html' %}
+{% endblock %}

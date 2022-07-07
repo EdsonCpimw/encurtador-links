@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <div class="content-wrapper">
+         {% include 'header.html' %}
+         {% include 'menu.html' %}
+        <section class="content-header">
+          <h1>
+            Bem vindo ao sistema EncurtaLinks.
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="callout callout-info">
+            <h4>Olá!</h4>
+            <p>Aqui voce poderá encurtar seus links e gerencia-los com total segurança. &#128540;</p>
+          </div>
+          <!-- Default box -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+        {% include 'footer.html' %}
+{% endblock %}
