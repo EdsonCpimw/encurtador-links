@@ -1,0 +1,77 @@
+{% load static %}
+{% block content %}
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'Home' %}" class="brand-link">
+      <img src="{% static 'adminlte3/dist/img/logo.png' %}" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Encurta Links</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+      <div class=" user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          {% if usuarioLogado.imagem %}
+          <img src="/media/{{ usuarioLogado.imagem }}" class="img-circle elevation-2" alt="User Image">
+          {% else %}
+          <img src="{% static 'adminlte3/dist/img/avatar5.png' %}" class="img-circle elevation-2" alt="User Image">
+          {% endif %}
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{usuarioLogado.get_full_name}}</a>
+        </div>
+      </div>
+      <div class="user-panel">
+          {% if usuarioLogado is True %}
+          <a href="{% url 'users:Usuarios' %}" class="nav-link">
+              <p class='d-block fas fa-sign-out-alt' style='font-size: 15px; margin-bottom: 20px;  margin-left: 10px;'>Logout</p>
+          </a>
+          {% else %}
+          <a href="{% url 'users:Usuarios' %}" class="nav-link">
+              <p class='d-block fas fa-sign-out-alt' style='font-size: 15px; margin-bottom: 20px;  margin-left: 10px;'>Login</p>
+          </a>
+          {% endif %}
+
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{% url 'users:Usuarios' %}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Cadastro de usuário
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:Usuarios' %}" class="nav-link">
+              <i class="nav-icon fas fa-link"></i>
+              <p>
+                Encurtador
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-laptop"></i>
+              <p>
+                Relatório
+              </p>
+            </a>
+          </li>
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+.profile-user-img {
+    margin: 0 auto !important;
+    width: 100px !important;
+    padding: 3px !important;
+    border: 3px solid #d2d6de !important;
+}
+.button-right {
+  text-align: right;
+}
+.button-left {
+  text-align: left;
+}
+.identButton{
+margin-bottom: 100px;
+}
+
+td a {
+  color: #ffff;
+}
+
+.ajusteLogout{
+  margin-top: 100px;
+  margin-left: 0px;
+  margin-right: auto;
+}
+
+.content-login{
+    margin-top: 30%;
+}
+
+.user-action{
+    margin-left 10px;
+}
