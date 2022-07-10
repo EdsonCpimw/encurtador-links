@@ -12,13 +12,6 @@ from users.mixins import UsuarioMixin
 from users.models import Usuario
 
 
-class LoginView(TemplateView):
-    template_name = 'users/registration/login.html'
-
-
-class HomeView(UsuarioMixin, TemplateView):
-    template_name = 'users/home.html'
-
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class UsuariosView(UsuarioMixin, ListView):
@@ -37,7 +30,7 @@ class UsuariosView(UsuarioMixin, ListView):
                  user.is_active ='Inativo'
         return usuarios
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CadastroUsuarioView(UsuarioMixin, SuccessMessageMixin, CreateView):
     form_class = RegistroModelForm
     template_name = 'users/cadastro_usuario.html'
@@ -59,6 +52,7 @@ class CadastroUsuarioView(UsuarioMixin, SuccessMessageMixin, CreateView):
        return reverse_lazy('users:Usuarios')
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class UpdateUsuarioView(UsuarioMixin, UpdateView):
     form_class = UserUpdateForm
     #fields = ['first_name', 'last_name', 'email', 'administrador', 'is_active', 'imagem']
@@ -93,6 +87,7 @@ def delete_usuario_view(request, pk):
     return redirect('users:Usuarios')
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DeleteUsuarioView(SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('users:Usuarios')
     success_message = 'Usuário deletado com sucesso!'
@@ -103,6 +98,7 @@ class DeleteUsuarioView(SuccessMessageMixin, DeleteView):
         return user
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailUserView(UsuarioMixin, FormMixin, DetailView):
     queryset = Usuario.objects.all()
     template_name = 'users/user_detail.html'
