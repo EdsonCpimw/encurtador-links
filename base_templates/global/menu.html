@@ -23,19 +23,25 @@
           <a href="#" class="d-block">{{usuarioLogado.get_full_name}}</a>
         </div>
       </div>
-      <div class="user-panel">
-          {% if usuarioLogado is True %}
-          <a href="{% url 'users:Usuarios' %}" class="nav-link">
-              <p class='d-block fas fa-sign-out-alt' style='font-size: 15px; margin-bottom: 20px;  margin-left: 10px;'>Logout</p>
-          </a>
-          {% else %}
-          <a href="{% url 'users:Usuarios' %}" class="nav-link">
-              <p class='d-block fas fa-sign-out-alt' style='font-size: 15px; margin-bottom: 20px;  margin-left: 10px;'>Login</p>
-          </a>
-          {% endif %}
-
-      </div>
-
+       <div class="user-panel">
+            <nav class="mt-0 mb-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                  {% if usuarioLogado.is_authenticated %}
+                  <a href="{% url 'logout' %}" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>Logout</p>
+                  </a>
+                  {% else %}
+                  <a href="{% url 'login' %}" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>Login</p>
+                  </a>
+                   {% endif %}
+                </li>
+              </ul>
+            </nav>
+       </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
