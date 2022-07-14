@@ -6,12 +6,13 @@
   <div class="login-logo">
     <a href="{% url 'login' %}"><b>Encurta</b>Links</a>
   </div>
+  {% include 'messages/errors_login.html' %}
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="" method="post">
+      <p class="login-box-msg">Sign in to start your session</p>
+      <form action="" method="POST">
         {% csrf_token %}
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="username" placeholder="Email" autofocus>

@@ -66,13 +66,11 @@ class UpdateUsuarioView(UsuarioMixin, UpdateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         user.username = user.email
-        if user.password:
-            user.set_password(user.password)
         messages.success(self.request, 'Usuário atualizado com sucesso.')
         return super(UpdateUsuarioView, self).form_valid(form)
 
     def form_invalid(self, form,  *args, **kwargs):
-        messages.error(self.request, 'Erro ao atualizar usuário')
+        # messages.error(self.request, 'Erro ao atualizar usuário')
         return super(UpdateUsuarioView, self).form_invalid(form,  *args, **kwargs)
 
     def get_success_url(self):

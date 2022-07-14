@@ -1,0 +1,44 @@
+{% load static %}
+<div>
+      {% if messages %}
+        {% for m in messages %}
+            {% if m.tags == "success" %}
+                  <div class="alert alert-success alert-dismissible" >
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                      <strong>{{m}}</strong>
+                  </div>
+            {% elif m.tags == "error" %}
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                      <strong>{{m}}</strong>
+                  </div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+</div>
+
+<!--<div>-->
+<!--    {% if form.errors %}-->
+<!--       {% for field in form %}-->
+<!--           {% for error in field.errors %}-->
+<!--                <div class="alert alert-danger alert-dismissible">-->
+<!--                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>-->
+<!--                <h4><i class="icon fa fa-ban"></i> Alert!</h4>-->
+<!--                    <strong>{{ error|escape }}</strong>-->
+<!--                </div>-->
+<!--           {% endfor %}-->
+<!--       {% endfor %}-->
+<!--    {% endif %}-->
+<!--</div>-->
+
+<div>
+    {% for error in form.non_field_errors %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+              {{error}}
+          </div>
+    {% endfor %}
+</div>

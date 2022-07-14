@@ -38,5 +38,8 @@ td a {
     padding: 0rem;
     display: block;
     margin-top: 0rem;
+}
 
+.Error{
+color: #dc3545;
 }
