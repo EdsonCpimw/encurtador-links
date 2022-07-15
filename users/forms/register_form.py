@@ -1,18 +1,12 @@
-import re
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.core.exceptions import ValidationError
+from utils.regex import strong_password
 
 from users.models import Usuario
 
 
 class RegistroModelForm(forms.ModelForm):
-    def stong_password(password):
-        regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
-        if not regex.match(password):
-            raise ValidationError((
-                'A senha deve conter letras maiusculas, minusculas, numeros e no minino 8 caracteres'
-            ))
+
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Digite seu Nome"}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Digite seu Sobrenome"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': "Digite seu Email"}))
@@ -21,7 +15,7 @@ class RegistroModelForm(forms.ModelForm):
         help_text=(
             'A senha deve ter pelo menos uma letra maiuscula, uma letra minuscula e um numero. O comprimento deve ser de pelo menos 8 caracteres'
         ),
-        validators=[stong_password]
+        validators=[strong_password]
     )
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                      'placeholder': "Digite a senha novamente"}))
@@ -74,6 +68,7 @@ class ViewUserModelForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled', 'placeholder': "Digite seu Nome"}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled', 'placeholder': "Digite seu Sobrenome"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'disabled': 'disabled', 'placeholder': "Digite seu Email"}))
+    imagem = forms.FileInput()
     is_active = forms.BooleanField(required=False,)
     is_active.widget.attrs['disabled'] = True
     is_staff = forms.BooleanField(required=False,)
