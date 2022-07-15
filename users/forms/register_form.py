@@ -1,7 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from utils.regex import strong_password
-
 from users.models import Usuario
 
 

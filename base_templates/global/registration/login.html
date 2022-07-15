@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-<div class="login-box content-login">
+<div class="login-box">
   <div class="login-logo">
     <a href="{% url 'login' %}"><b>Encurta</b>Links</a>
   </div>
-  {% include 'messages/errors_login.html' %}
+  {% include 'messages/messages.html' %}
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">

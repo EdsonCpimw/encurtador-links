@@ -19,10 +19,12 @@ from django.conf.urls.static import static
 from config import settings
 from home.views import HomeView
 from users import urls as users_urls
+from users.views import RegisterUsuarioView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='Home'),
     path('auth/', include('django.contrib.auth.urls')),
+    path('auth/register/', RegisterUsuarioView.as_view(), name='Register_usuario'),
     path('users/', include(users_urls)),
     path('admin/', admin.site.urls),
 ]

@@ -1,16 +1,34 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.decorators import method_decorator
-from django.views.generic.base import TemplateView, View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMixin
 from users.forms import RegistroModelForm, UserUpdateForm, ViewUserModelForm
 from users.mixins import UsuarioMixin
 from users.models import Usuario
 
+
+class RegisterUsuarioView(CreateView):
+    form_class = RegistroModelForm
+    template_name = 'registration/register_usuario.html'
+
+    def form_valid(self, form, *args, **kwargs):
+        user = form.save(commit=False)
+        user.username = user.email
+        user.set_password(user.password)
+        user.is_active = True
+        messages.success(self.request, f'Usuário(a) {user.username} cadastrado com sucesso.')
+        return super(RegisterUsuarioView, self).form_valid(form,  *args, **kwargs)
+
+    def form_invalid(self, form,  *args, **kwargs):
+        messages.error(self.request, 'Erro ao cadastrar usuário')
+        return super(RegisterUsuarioView, self).form_invalid(form,  *args, **kwargs)
+
+    def get_success_url(self):
+       return reverse_lazy('login')
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -29,6 +47,7 @@ class UsuariosView(UsuarioMixin, ListView):
             else:
                  user.is_active ='Inativo'
         return usuarios
+
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class CadastroUsuarioView(UsuarioMixin, SuccessMessageMixin, CreateView):
