@@ -19,13 +19,32 @@
             <!-- left column -->
             <div class="col-md-12">
               <!-- general form elements -->
-                {% include 'messages.html' %}
+                {% include 'messages/custom_errors.html' %}
                 <!-- general form elements -->
                 <div class="card card-primary">
                   <div class="card-header">
                     <h3 class="card-title">Formulário de Cadastro</h3>
                   </div>
                   <!-- /.card-header -->
+                  <!-- Profile Image -->
+                  {% if request.resolver_match.url_name == 'Update_usuario' %}
+                  <div class="card-body box-profile">
+                    <div class="text-center">
+                      {% if object.imagem %}
+                      <img class="profile-user-img img-fluid img-circle"
+                           src="{{ object.imagem.url }}"
+                           alt="User profile picture">
+                      {% else %}
+                      <img class="profile-user-img img-fluid img-circle"
+                           src="{% static 'adminlte3/dist/img/avatar5.png' %}"
+                           alt="User profile picture">
+                      {% endif %}
+                    </div>
+                    <h3 class="profile-username text-center">{{usuario.get_full_name}}</h3>
+                    <p class="text-muted text-center">Software Engineer</p>
+                  </div>
+                  {% endif %}
+                <!-- /.card -->
                   <!-- form start -->
                   <form role="form" method="POST" id="quickForm" enctype="multipart/form-data">
                       {% csrf_token %}
@@ -41,6 +60,7 @@
                         <div class="form-group">
                           <label>Email:</label>
                            {{form.email}}
+                            {{form.errors.email}}
                         </div>
                         {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
                         <div class="form-group">
@@ -52,9 +72,8 @@
                         <div class="form-group">
                           <label>Confirma Senha:</label>
                            {{form.confirm_password}}
-                            {{form.errors.confirm_password}}
+                           {{form.errors.confirm_password}}
                         </div>
-
                         {% endif %}
                           <div class="form-group">
                             <label for="customFile">Foto de Perfil</label>
