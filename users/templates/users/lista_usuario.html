@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load permission_tags %}
 {% block content %}
       <div class="content-wrapper">
          {% include 'header.html' %}
@@ -17,7 +18,9 @@
                 <div class="card">
                   <!-- /.card-header -->
                   <div class="card-body">
+                    {% if usuarioLogado|can:'Cadastrar_usuario' %}
                     <a href="{% url 'users:Cadastro_usuario' %}" class="btn btn-primary">Adicionar</a>
+                    {% endif %}
                     <table id="usuarios" class="table table-bordered table-striped">
                       <thead>
                       <tr>

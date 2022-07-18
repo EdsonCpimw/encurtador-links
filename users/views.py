@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMi
 from users.forms import RegistroModelForm, UserUpdateForm, ViewUserModelForm
 from users.mixins import UsuarioMixin
 from users.models import Usuario
+from rolepermissions.mixins import HasPermissionsMixin
 
 
 class RegisterUsuarioView(CreateView):
@@ -32,7 +33,8 @@ class RegisterUsuarioView(CreateView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class UsuariosView(UsuarioMixin, ListView):
+class UsuariosView(HasPermissionsMixin, UsuarioMixin, ListView):
+    required_permission = 'listar_usuario'
     models = Usuario
     template_name = 'users/lista_usuario.html'
     # queryset = Usuario.objects.all()
@@ -50,7 +52,8 @@ class UsuariosView(UsuarioMixin, ListView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class CadastroUsuarioView(UsuarioMixin, SuccessMessageMixin, CreateView):
+class CadastroUsuarioView(HasPermissionsMixin, UsuarioMixin, SuccessMessageMixin, CreateView):
+    required_permission = 'Cadastrar_usuario'
     form_class = RegistroModelForm
     template_name = 'users/cadastro_usuario.html'
     # success_message = 'Usuário cadastrado com sucesso.'
@@ -72,7 +75,8 @@ class CadastroUsuarioView(UsuarioMixin, SuccessMessageMixin, CreateView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class UpdateUsuarioView(UsuarioMixin, UpdateView):
+class UpdateUsuarioView(HasPermissionsMixin, UsuarioMixin, UpdateView):
+    required_permission = 'Atualizar_usuario'
     form_class = UserUpdateForm
     #fields = ['first_name', 'last_name', 'email', 'administrador', 'is_active', 'imagem']
     template_name = 'users/cadastro_usuario.html'
@@ -105,7 +109,8 @@ def delete_usuario_view(request, pk):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class DeleteUsuarioView(SuccessMessageMixin, DeleteView):
+class DeleteUsuarioView(HasPermissionsMixin, SuccessMessageMixin, DeleteView):
+    required_permission = 'deletar_usuario'
     success_url = reverse_lazy('users:Usuarios')
     success_message = 'Usuário deletado com sucesso!'
 
@@ -116,7 +121,8 @@ class DeleteUsuarioView(SuccessMessageMixin, DeleteView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class DetailUserView(UsuarioMixin, FormMixin, DetailView):
+class DetailUserView(HasPermissionsMixin, UsuarioMixin, FormMixin, DetailView):
+    required_permission = 'detalhes_usuario'
     queryset = Usuario.objects.all()
     template_name = 'users/user_detail.html'
     # context_object_name = 'object'
