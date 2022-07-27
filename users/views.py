@@ -35,7 +35,7 @@ class RegisterUsuarioView(CreateView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class UsuariosView(HasPermissionsMixin, UsuarioMixin, ListView):
     required_permission = 'listar_usuario'
-    models = Usuario
+    model = Usuario
     template_name = 'users/lista_usuario.html'
     # queryset = Usuario.objects.all()
     context_object_name = 'usuarios'
@@ -125,13 +125,8 @@ class DetailUserView(HasPermissionsMixin, UsuarioMixin, FormMixin, DetailView):
     required_permission = 'detalhes_usuario'
     queryset = Usuario.objects.all()
     template_name = 'users/user_detail.html'
-    # context_object_name = 'object'
     form_class = ViewUserModelForm
 
     def get_form(self, form_class=None):
         form = self.form_class(instance=self.object)
         return form
-
-    def get_context_data(self, **kwargs):
-        context = super(DetailUserView, self).get_context_data(**kwargs)
-        return context
