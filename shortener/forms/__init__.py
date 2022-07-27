@@ -1,0 +1,1 @@
+from .shortener_form import RegisterUrlModelForm

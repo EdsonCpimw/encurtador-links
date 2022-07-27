@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <div class="content-wrapper">
+         {% include 'header.html' %}
+         {% include 'menu.html' %}
+        <section class="content-header">
+          <h1>
+            Bem vindo ao Encurtador.
+          </h1>
+        </section>
+          {% include 'messages/custom_message.html' %}
+        <!-- Main content -->
+        <section class="content">
+          <div class="callout callout-info">
+            <h4>Olá!</h4>
+            <p>Seu Link encuratado possuirá o prazo de expiração de 10 dias. &#128540;</p>
+                <form role="form" method="POST" id="quickForm" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                          <label>URL:</label>
+                          {{form.url}}
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>URL Encurtada:</label>
+                          {{form.shortened_url}}
+                        </div>
+                        {% if usuarioLogado.is_staff %}
+                        <div class="form-group col-md-6">
+                          <label>Usuario:</label>
+                            {{form.created_by}}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        {% if request.resolver_match.url_name == 'Creation_link' %}
+                        <button type="submit" class="btn btn-primary float-right ">Encurtar</button>
+                        {% elif request.resolver_match.url_name == 'Detail_link' %}
+                        <a href="{% url 'shortener:Creation_link' %}" class="btn btn-primary float-right ">Novo Link</a>
+                        <a href="{% url 'shortener:List_link' %}"  class="btn btn-default">Voltar</a>
+                        {% endif %}
+                    </div>
+                </form>
+          </div>
+          <!-- Default box -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+    {% include 'footer.html' %}
+{% endblock %}
