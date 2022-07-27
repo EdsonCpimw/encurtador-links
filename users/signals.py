@@ -11,4 +11,11 @@ def set_permissions(sender, instance, created, **kwargs):
             assign_role(instance, 'administrador')
         elif instance.is_staff == False:
             assign_role(instance, 'usuario')
+    elif not created:
+        if instance.is_staff == True:
+            instance.groups.clear()
+            assign_role(instance, 'administrador')
+        elif instance.is_staff == False:
+            instance.groups.clear()
+            assign_role(instance, 'usuario')
 
