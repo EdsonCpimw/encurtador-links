@@ -43,3 +43,7 @@ td a {
 .Error{
 color: #dc3545;
 }
+
+.card-footer a {
+    text-decoration: none;
+}
