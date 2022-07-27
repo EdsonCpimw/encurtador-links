@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{% static 'adminlte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css' %}">
       <!-- Toastr -->
     <link rel="stylesheet" href="{% static 'adminlte3/plugins/toastr/toastr.min.css' %}">
+      <!-- Select2 -->
+    <link rel="stylesheet" href="{% static 'adminlte3/plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminlte3/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed">
@@ -77,6 +80,8 @@
     <script src="{% static 'adminlte3/plugins/toastr/toastr.min.js' %}"></script>
     <!-- bs-custom-file-input -->
     <script src="{% static 'adminlte3/plugins/bs-custom-file-input/bs-custom-file-input.min.js' %}"></script>
+    <!-- Select2 -->
+    <script src="{% static 'adminlte3/plugins/select2/js/select2.full.min.js' %}"></script>
     <script>
         $(function () {
           bsCustomFileInput.init();
@@ -94,5 +99,19 @@
 <!--        document.getElementById("item-delete-form").action = selected_user.href-->
 <!--        }-->
 <!--    </script>-->
+    <script>
+        $(document).ready(function()
+        {
+          $('#select2').select2();
+        });
+    </script>
+    <script>
+        $(document).ready( function () {
+          var table = $('#example').DataTable();
+
+          $(".dataTables_empty").text("Desculpe, nada foi encontrado!");
+        } );
+
+    </script>
   </body>
 </html>
