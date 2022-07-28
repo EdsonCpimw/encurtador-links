@@ -87,7 +87,7 @@ class LinksView(HasPermissionsMixin, UsuarioMixin, FormView, ListView):
             links = queryset.filter(expires_at__gt=now, created_by=self.request.user)
         return links
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DeleteLinkView(HasPermissionsMixin, DeleteView):
     required_permission = 'deletar_link'
     sucess_message = 'Link deletado com sucesso!'
@@ -101,7 +101,7 @@ class DeleteLinkView(HasPermissionsMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('shortener:List_link')
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DetailLinkView(HasPermissionsMixin, UsuarioMixin, ModelFormMixin, DetailView):
     required_permission = 'detalhes_link'
     model = Link
@@ -109,9 +109,9 @@ class DetailLinkView(HasPermissionsMixin, UsuarioMixin, ModelFormMixin, DetailVi
     # context_object_name = 'link'
     form_class = ViewUrlModelForm
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class BulkDeleteLinksView(HasPermissionsMixin, View):
-    required_permission = ''
+    required_permission = 'remover_links'
     model = Link
     success_url = reverse_lazy('shortener:List_link')
 
