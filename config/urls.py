@@ -20,11 +20,12 @@ from config import settings
 from home.views import HomeView
 from users import urls as users_urls
 from shortener import urls as links_urls
-from users.views import RegisterUsuarioView
+from users.views import RegisterUsuarioView, LoginUserView
 
 urlpatterns = [
 
     path('home/', HomeView.as_view(), name='Home'),
+    path('auth/login/', LoginUserView.as_view(), name='Login'),
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/register/', RegisterUsuarioView.as_view(), name='Register_usuario'),
     path('users/', include(users_urls)),

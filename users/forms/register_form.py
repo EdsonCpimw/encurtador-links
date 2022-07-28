@@ -1,7 +1,14 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from utils.regex import strong_password
 from users.models import Usuario
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Invisible
+
+
+class UserAuthenticationForm(AuthenticationForm):
+    captcha = ReCaptchaField(widget=ReCaptchaV2Invisible)
 
 
 class RegistroModelForm(forms.ModelForm):
@@ -16,6 +23,7 @@ class RegistroModelForm(forms.ModelForm):
         ),
         validators=[strong_password]
     )
+    captcha = ReCaptchaField(widget=ReCaptchaV2Invisible)
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                      'placeholder': "Digite a senha novamente"}))
     # imagem = forms.ImageField(widget=forms.TextInput(attrs={'class': 'custom-file-input', 'id': 'customFile'}))

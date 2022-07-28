@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -7,10 +8,14 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMixin
 from users.forms import RegistroModelForm, UserUpdateForm, ViewUserModelForm
+from users.forms.register_form import UserAuthenticationForm
 from users.mixins import UsuarioMixin
 from users.models import Usuario
 from rolepermissions.mixins import HasPermissionsMixin
 
+
+class LoginUserView(LoginView):
+    form_class = UserAuthenticationForm
 
 class RegisterUsuarioView(CreateView):
     form_class = RegistroModelForm
