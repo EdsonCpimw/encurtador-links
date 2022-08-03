@@ -31,9 +31,9 @@
                   {% if request.resolver_match.url_name == 'Update_usuario' %}
                   <div class="card-body box-profile">
                     <div class="text-center">
-                      {% if object.imagem %}
+                      {% if object.image %}
                       <img class="profile-user-img img-fluid img-circle"
-                           src="{{ object.imagem.url }}"
+                           src="{{ object.image.url }}"
                            alt="User profile picture">
                       {% else %}
                       <img class="profile-user-img img-fluid img-circle"
@@ -79,7 +79,7 @@
                           <div class="form-group">
                             <label for="customFile">{% trans 'Profile picture' %}</label>
                             <div class="custom-file">
-                               <input type="file" class="custom-file-input" name="imagem" id="customFile">
+                               <input type="file" class="custom-file-input" name="image" id="customFile">
                               <label class="custom-file-label" for="customFile">{% trans 'choose the file' %}</label>
                             </div>
                           </div>

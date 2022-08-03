@@ -27,11 +27,11 @@ class RegisterUsuarioView(CreateView):
         user.username = user.email
         user.set_password(user.password)
         user.is_active = True
-        messages.success(self.request, _(f'Usuário(a) {user.username} cadastrado com sucesso.'))
+        messages.success(self.request, _(f'User {user.username} successfully registered.'))
         return super(RegisterUsuarioView, self).form_valid(form,  *args, **kwargs)
 
     def form_invalid(self, form,  *args, **kwargs):
-        messages.error(self.request, _('Erro ao cadastrar usuário'))
+        messages.error(self.request, _('Error registering user'))
         return super(RegisterUsuarioView, self).form_invalid(form,  *args, **kwargs)
 
     def get_success_url(self):
@@ -51,9 +51,9 @@ class UsuariosView(HasPermissionsMixin, UsuarioMixin, ListView):
         usuarios = Usuario.objects.all()
         for user in usuarios:
             if user.is_active == True:
-                 user.is_active =_('Ativo')
+                 user.is_active =_('Active')
             else:
-                 user.is_active =_('Inativo')
+                 user.is_active =_('Inactive')
         return usuarios
 
 
@@ -69,11 +69,11 @@ class CadastroUsuarioView(HasPermissionsMixin, UsuarioMixin, SuccessMessageMixin
         user = form.save(commit=False)
         user.username = user.email
         user.set_password(user.password)
-        messages.success(self.request, _('Usuário cadastrado com sucesso.'))
+        messages.success(self.request, _('User registered successfully.'))
         return super(CadastroUsuarioView, self).form_valid(form,  *args, **kwargs)
 
     def form_invalid(self, form,  *args, **kwargs):
-        messages.error(self.request, _('Erro ao cadastrar usuário'))
+        messages.error(self.request, _('Error registering user'))
         return super(CadastroUsuarioView, self).form_invalid(form,  *args, **kwargs)
 
     def get_success_url(self):
@@ -95,7 +95,7 @@ class UpdateUsuarioView(HasPermissionsMixin, UsuarioMixin, UpdateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         user.username = user.email
-        messages.success(self.request, _('Usuário atualizado com sucesso.'))
+        messages.success(self.request, _('User successfully updated.'))
         return super(UpdateUsuarioView, self).form_valid(form)
 
     def form_invalid(self, form,  *args, **kwargs):
@@ -110,7 +110,7 @@ def delete_usuario_view(request, pk):
     """TODO: Necessário fazer um tratamento de error"""
     user = Usuario.objects.get(pk=pk)
     user.delete()
-    messages.success(request, _("Usuário deletado com sucesso!"))
+    messages.success(request, _("User successfully deleted!"))
     return redirect('users:Usuarios')
 
 
@@ -118,7 +118,7 @@ def delete_usuario_view(request, pk):
 class DeleteUsuarioView(HasPermissionsMixin, SuccessMessageMixin, DeleteView):
     required_permission = 'deletar_usuario'
     success_url = reverse_lazy('users:Usuarios')
-    success_message = _('Usuário deletado com sucesso!')
+    success_message = _('User successfully deleted!')
 
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')

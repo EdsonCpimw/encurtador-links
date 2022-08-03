@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-03 01:27-0300\n"
+"POT-Creation-Date: 2022-08-03 01:59-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,7 +265,7 @@ msgid "choose the file"
 msgstr "escolha o arquivo"
 
 #: users/templates/users/cadastro_usuario.html:88
-#: users/templates/users/user_detail.html:92
+#: users/templates/users/user_detail.html:92 users/views.py:54
 msgid "Active"
 msgstr "Ativo"
 
@@ -339,3 +339,28 @@ msgstr "Detalhe do usuário."
 #: users/templates/users/user_detail.html:41
 msgid "View Form"
 msgstr "Formulário de Visualização"
+
+#: users/views.py:30
+#, python-brace-format
+msgid "User {user.username} successfully registered."
+msgstr "Usuário(a) {user.username} cadastrado com sucesso."
+
+#: users/views.py:34 users/views.py:76
+msgid "Error registering user"
+msgstr "Erro ao cadastrar usuário"
+
+#: users/views.py:56
+msgid "Inactive"
+msgstr "Inativo"
+
+#: users/views.py:72
+msgid "User registered successfully."
+msgstr "Usuário cadastrado com sucesso."
+
+#: users/views.py:98
+msgid "User successfully updated."
+msgstr "Usuário atualizado com sucesso!"
+
+#: users/views.py:113 users/views.py:121
+msgid "User successfully deleted!"
+msgstr "Usuário deletado com sucesso!"
