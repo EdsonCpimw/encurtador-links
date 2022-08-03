@@ -39,13 +39,17 @@ IMPORTANTE: Necessário criar um .env com as configurações antes do proximo co
 python manage.py migrate
 
 ```
+6 - Executar o comando compilemessages para gerar a tradução em português da aplicação
+```
+$ python manage.py compilemessages
+```
 
-6 - Crie o Super Usuario. Siga as instruções do comando abaixo.
+7 - Crie o Super Usuario. Siga as instruções do comando abaixo.
 ```
 $ python manage.py createsuperuser
 ```
 
-7 - Execute o servidor de aplicação
+8 - Execute o servidor de aplicação
 ```
 python manage.py runserver
 ```
