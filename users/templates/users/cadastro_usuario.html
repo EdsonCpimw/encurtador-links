@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
       <div class="content-wrapper">
@@ -7,9 +8,9 @@
         <section class="content-header">
           <h1>
               {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
-                Cadastro de usuário.
+                {% trans 'User registration.' %}
               {% else %}
-                Alteração de usuário
+                {% trans 'User change.' %}
               {% endif %}
           </h1>
         </section>
@@ -23,7 +24,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                   <div class="card-header">
-                    <h3 class="card-title">Formulário de Cadastro</h3>
+                    <h3 class="card-title">{% trans 'Registration Form' %}</h3>
                   </div>
                   <!-- /.card-header -->
                   <!-- Profile Image -->
@@ -41,7 +42,7 @@
                       {% endif %}
                     </div>
                     <h3 class="profile-username text-center">{{usuario.get_full_name}}</h3>
-                    <p class="text-muted text-center">Software Engineer</p>
+                    <p class="text-muted text-center">{% trans 'Software Engineer' %}</p>
                   </div>
                   {% endif %}
                 <!-- /.card -->
@@ -50,11 +51,11 @@
                       {% csrf_token %}
                     <div class="card-body">
                         <div class="form-group">
-                          <label>Nome:</label>
+                          <label>{% trans 'Name:' %}</label>
                           {{form.first_name}}
                         </div>
                         <div class="form-group">
-                          <label>Sobrenome:</label>
+                          <label>{% trans 'Last name:' %}</label>
                           {{form.last_name}}
                         </div>
                         <div class="form-group">
@@ -64,43 +65,43 @@
                         </div>
                         {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
                         <div class="form-group">
-                          <label>Senha:</label>
+                          <label>{% trans 'Password:' %}</label>
                            {{form.password}}
                            {{form.password.help_text}}
                            {{form.errors.password}}
                         </div>
                         <div class="form-group">
-                          <label>Confirma Senha:</label>
+                          <label>{% trans 'Confirm Password:' %}</label>
                            {{form.confirm_password}}
                            {{form.errors.confirm_password}}
                         </div>
                         {% endif %}
                           <div class="form-group">
-                            <label for="customFile">Foto de Perfil</label>
+                            <label for="customFile">{% trans 'Profile picture' %}</label>
                             <div class="custom-file">
                                <input type="file" class="custom-file-input" name="imagem" id="customFile">
-                              <label class="custom-file-label" for="customFile">Escolha o arquivo</label>
+                              <label class="custom-file-label" for="customFile">{% trans 'choose the file' %}</label>
                             </div>
                           </div>
                         <div class="checkbox">
                           <label>
-                              {{ form.is_active }} Ativo
+                              {{ form.is_active }} {% trans 'Active' %}
                           </label>
                         </div>
                         <div class="checkbox">
                           <label>
-                              {{ form.is_staff }} Administrador
+                              {{ form.is_staff }} {% trans 'Administrator' %}
                           </label>
                         </div>
                     </div>
                     <!-- /.card-body -->
                   <!-- /.box-body -->
                     <div class="card-footer">
-                      <a href="{% url 'users:Usuarios' %}"  class="btn btn-default">Voltar</a>
+                      <a href="{% url 'users:Usuarios' %}"  class="btn btn-default">{% trans 'Back' %}</a>
                         {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
-                      <button type="submit" class="btn btn-primary float-right ">Adicionar</button>
+                      <button type="submit" class="btn btn-primary float-right ">{% trans 'Add' %}</button>
                         {% else %}
-                      <button type="submit" class="btn btn-primary float-right ">Atualizar</button>
+                      <button type="submit" class="btn btn-primary float-right ">{% trans 'Update' %}</button>
                         {% endif %}
                     </div>
                   </form>

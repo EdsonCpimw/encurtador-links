@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-03 01:27-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: base_templates/global/403.html:12
+msgid "Oops! Forbidden."
+msgstr "Ops! Proibido."
+
+#: base_templates/global/403.html:15 base_templates/global/404.html:15
+msgid "We could not find the page you were looking for."
+msgstr "Não foi possível encontrar a página que você estava procurando."
+
+#: base_templates/global/403.html:16 base_templates/global/500.html:16
+msgid "Meanwhile, you may"
+msgstr "Enquanto isso, você pode"
+
+#: base_templates/global/403.html:16 base_templates/global/500.html:16
+msgid "return to dashboard"
+msgstr "voltar ao painel"
+
+#: base_templates/global/404.html:12
+msgid "Oops! Page not found."
+msgstr "Ops! Página não encontrada."
+
+#: base_templates/global/footer.html:7
+msgid "All rights reserved"
+msgstr "Todos os direitos reservados"
+
+#: base_templates/global/menu.html:57
+msgid "User List"
+msgstr "Lista de usuários"
+
+#: base_templates/global/menu.html:66
+msgid "Shortener"
+msgstr "Encurtador"
+
+#: base_templates/global/menu.html:74
+msgid "Report"
+msgstr "Relatório"
+
+#: base_templates/global/registration/login.html:15
+msgid "Sign in to start your session"
+msgstr "Faça login para iniciar sua sessão"
+
+#: base_templates/global/registration/login.html:27
+#: base_templates/global/registration/register_usuario.html:42
+#, fuzzy
+#| msgid "password"
+msgid "Password"
+msgstr "Senha"
+
+#: base_templates/global/registration/login.html:46
+msgid "Remember Me"
+msgstr "Lembre de mim"
+
+#: base_templates/global/registration/login.html:52
+msgid "Sign In"
+msgstr "Entrar"
+
+#: base_templates/global/registration/login.html:58
+msgid "I forgot my password"
+msgstr "Esqueci a minha senha"
+
+#: base_templates/global/registration/login.html:61
+#: base_templates/global/registration/register_usuario.html:13
+msgid "Register a new membership"
+msgstr "Registre uma nova conta"
+
+#: base_templates/global/registration/register_usuario.html:18
+msgid "First name"
+msgstr "Primeiro nome"
+
+#: base_templates/global/registration/register_usuario.html:26
+msgid "Last name"
+msgstr "Sobrenome"
+
+#: base_templates/global/registration/register_usuario.html:51
+msgid "Retype password"
+msgstr "Redigite a senha"
+
+#: base_templates/global/registration/register_usuario.html:69
+msgid "I agree to the"
+msgstr "Eu concordo com os"
+
+#: base_templates/global/registration/register_usuario.html:69
+msgid "terms"
+msgstr "termos"
+
+#: base_templates/global/registration/register_usuario.html:75
+msgid "Register"
+msgstr "Registrar"
+
+#: base_templates/global/registration/register_usuario.html:93
+msgid "I already have a membership"
+msgstr "Eu já tenho uma conta"
+
+#: home/templates/home/home.html:10
+msgid "Welcome to the ShortenLinks system."
+msgstr "Bem vindo ao sistema EncurtaLinks."
+
+#: home/templates/home/home.html:17
+msgid "Hi!"
+msgstr "Olá!"
+
+#: home/templates/home/home.html:18
+msgid "Here you can shorten your links and manage them with complete security."
+msgstr ""
+"Aqui voce poderá encurtar seus links e gerencia-los com total segurança."
+
+#: shortener/forms/shortener_form.py:10 shortener/forms/shortener_form.py:29
+msgid "Your URL here"
+msgstr "Seu URL aqui"
+
+#: shortener/forms/shortener_form.py:45
+msgid "-----  Select  -----"
+msgstr "----- Selecionar -----"
+
+#: shortener/forms/shortener_form.py:46
+msgid "All Links"
+msgstr "Todos os links"
+
+#: shortener/forms/shortener_form.py:47
+msgid "Expired links"
+msgstr "Links expirados"
+
+#: shortener/forms/shortener_form.py:48
+msgid "Links not expired"
+msgstr "Links não expirados"
+
+#: shortener/views.py:49
+msgid "Link generated successfully"
+msgstr "Link gerado com sucesso"
+
+#: shortener/views.py:53
+msgid "Error generating shortened link"
+msgstr "Erro ao gerar link encurtado"
+
+#: shortener/views.py:94
+msgid "Link successfully deleted!"
+msgstr "Link excluído com sucesso!"
+
+#: shortener/views.py:124
+msgid "All expired links were successfully removed!"
+msgstr "Todos os links expirados foram removidos com sucesso!"
+
+#: shortener/views.py:127
+msgid "Unable to remove links: {type(e)}"
+msgstr "Não foi possível remover links: "
+
+#: users/forms/register_form.py:17 users/forms/register_form.py:63
+#: users/forms/register_form.py:76
+msgid "Type your name"
+msgstr "Digite seu Nome"
+
+#: users/forms/register_form.py:18 users/forms/register_form.py:64
+#: users/forms/register_form.py:77
+msgid "Enter your Last Name"
+msgstr "Digite seu Sobrenome"
+
+#: users/forms/register_form.py:19 users/forms/register_form.py:65
+#: users/forms/register_form.py:78
+msgid "Type your e-mail"
+msgstr "Digite seu Email"
+
+#: users/forms/register_form.py:21
+msgid "Type your password"
+msgstr "Redigite a senha"
+
+#: users/forms/register_form.py:23
+msgid ""
+"The password must have at least one uppercase letter, one lowercase letter "
+"and one number. Length must be at least 8 characters"
+msgstr ""
+"A senha deve ter pelo menos uma letra maiuscula, uma letra minuscula e um "
+"numero.O comprimento deve ser de pelo menos 8 caracteres"
+
+#: users/forms/register_form.py:29
+msgid "Type the password again"
+msgstr "Redigite a senha"
+
+#: users/forms/register_form.py:44
+msgid "Password and Confirm Password must be the same"
+msgstr "Senha e Confirma Senha precisam ser iguais"
+
+#: users/models.py:16
+msgid "password"
+msgstr "Senha"
+
+#: users/models.py:21
+msgid "admin status"
+msgstr "status de administrador"
+
+#: users/models.py:24
+msgid "Allow the user to be able to login to the Admin page."
+msgstr "Permitir que o usuário possa fazer login na página Admin."
+
+#: users/models.py:28
+msgid "super_user status"
+msgstr "status de super_usuário"
+
+#: users/models.py:31
+msgid "Allows to be a Super User"
+msgstr ""
+
+#: users/templates/users/cadastro_usuario.html:11
+msgid "User registration."
+msgstr "Cadastro de usuário."
+
+#: users/templates/users/cadastro_usuario.html:13
+msgid "User change."
+msgstr "Alteração de usuário."
+
+#: users/templates/users/cadastro_usuario.html:27
+msgid "Registration Form"
+msgstr "Formulário de Cadastro"
+
+#: users/templates/users/cadastro_usuario.html:45
+#: users/templates/users/user_detail.html:58
+msgid "Software Engineer"
+msgstr "Engenheiro de software"
+
+#: users/templates/users/cadastro_usuario.html:54
+#: users/templates/users/user_detail.html:66
+msgid "Name:"
+msgstr "Nome:"
+
+#: users/templates/users/cadastro_usuario.html:58
+#: users/templates/users/user_detail.html:70
+msgid "Last name:"
+msgstr "Sobrenome:"
+
+#: users/templates/users/cadastro_usuario.html:68
+#: users/templates/users/user_detail.html:79
+msgid "Password:"
+msgstr "Senha:"
+
+#: users/templates/users/cadastro_usuario.html:74
+msgid "Confirm Password:"
+msgstr "Confirmar senha:"
+
+#: users/templates/users/cadastro_usuario.html:80
+#: users/templates/users/user_detail.html:84
+msgid "Profile picture"
+msgstr "Foto de Perfil"
+
+#: users/templates/users/cadastro_usuario.html:83
+#: users/templates/users/user_detail.html:87
+msgid "choose the file"
+msgstr "escolha o arquivo"
+
+#: users/templates/users/cadastro_usuario.html:88
+#: users/templates/users/user_detail.html:92
+msgid "Active"
+msgstr "Ativo"
+
+#: users/templates/users/cadastro_usuario.html:93
+#: users/templates/users/user_detail.html:97
+msgid "Administrator"
+msgstr "Administrador"
+
+#: users/templates/users/cadastro_usuario.html:100
+#: users/templates/users/user_detail.html:104
+msgid "Back"
+msgstr "Voltar"
+
+#: users/templates/users/cadastro_usuario.html:102
+#: users/templates/users/lista_usuario.html:23
+msgid "Add"
+msgstr "Adicionar"
+
+#: users/templates/users/cadastro_usuario.html:104
+msgid "Update"
+msgstr "Atualizar"
+
+#: users/templates/users/lista_usuario.html:11
+msgid "Welcome to the user list."
+msgstr "Bem vindo ao sistema EncurtaLinks."
+
+#: users/templates/users/lista_usuario.html:28
+msgid "User ID"
+msgstr "Id Usuário"
+
+#: users/templates/users/lista_usuario.html:29
+msgid "Full name"
+msgstr "Primeiro nome"
+
+#: users/templates/users/lista_usuario.html:30
+msgid "Email"
+msgstr ""
+
+#: users/templates/users/lista_usuario.html:31
+msgid "Status"
+msgstr ""
+
+#: users/templates/users/lista_usuario.html:32
+msgid "Actions"
+msgstr "Ações"
+
+#: users/templates/users/lista_usuario.html:62
+msgid "delete user"
+msgstr "Excluir usuário"
+
+#: users/templates/users/lista_usuario.html:68
+msgid "Do you want to delete the User:"
+msgstr "Deseja excluir o Usuário:"
+
+#: users/templates/users/lista_usuario.html:71
+msgid "Close"
+msgstr "Fechar"
+
+#: users/templates/users/lista_usuario.html:75
+msgid "Delete"
+msgstr "Excluir"
+
+#: users/templates/users/lista_usuario.html:86
+msgid "Sorry, nothing was found!"
+msgstr "Desculpe, nada foi encontrado!"
+
+#: users/templates/users/user_detail.html:10
+msgid "User detail."
+msgstr "Detalhe do usuário."
+
+#: users/templates/users/user_detail.html:41
+msgid "View Form"
+msgstr "Formulário de Visualização"

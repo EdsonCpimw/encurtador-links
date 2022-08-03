@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
       <div class="content-wrapper">
@@ -6,15 +7,15 @@
          {% include 'menu.html' %}
         <section class="content-header">
           <h1>
-            Bem vindo ao sistema EncurtaLinks.
+            {% trans 'Welcome to the ShortenLinks system.' %}
           </h1>
         </section>
 
         <!-- Main content -->
         <section class="content">
           <div class="callout callout-info">
-            <h4>Olá!</h4>
-            <p>Aqui voce poderá encurtar seus links e gerencia-los com total segurança. &#128540;</p>
+            <h4>{% trans 'Hi!' %}</h4>
+            <p>{% trans 'Here you can shorten your links and manage them with complete security.' %} &#128540;</p>
           </div>
           <!-- Default box -->
         </section><!-- /.content -->

@@ -14,6 +14,8 @@ from pathlib import Path
 from decouple import config
 import os
 from dj_database_url import parse as dburl
+from django.utils.translation import gettext_lazy as _
+from django.utils import translation
 
 AUTH_USER_MODEL = 'users.Usuario'
 
@@ -59,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # CORSHEADERS
     'corsheaders.middleware.CorsMiddleware',
@@ -126,7 +129,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+# LANGUAGES = [
+#     ('en-us', _('English')),
+#     ('pt-br', _('Portuguese')),
+# ]
+#
+# LANGUAGE_CODE = 'pt-br'
+
+LOCALE_PATHS = (
+    BASE_DIR, 'locale',
+)
+
+
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -161,6 +175,7 @@ LOGOUT_REDIRECT_URL = 'login'
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = 0.85
+
 
 # Recursos de Segurança
 # SECURE_HSTS_SECONDS = True

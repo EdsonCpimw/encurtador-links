@@ -21,14 +21,14 @@ class Usuario(AbstractUser):
         _('admin status'),
         default=False,
         help_text=_(
-            'Permite que o usuario possa fazer login na pagina de Administração.'),
+            'Allow the user to be able to login to the Admin page.'),
     )
 
     is_superuser = models.BooleanField(
         _('super_user status'),
         default=False,
         help_text=_(
-            'Permite ser um Super Usuário'),
+            'Allows to be a Super User'),
     )
 
     objects = UsuarioManager()

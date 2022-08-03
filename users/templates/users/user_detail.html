@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% block content %}
       <div class="content-wrapper">
@@ -6,7 +7,7 @@
          {% include 'menu.html' %}
         <section class="content-header">
           <h1>
-            Detalhamento do usuário.
+            {% trans 'User detail.' %}
           </h1>
         </section>
         <section class="content">
@@ -37,7 +38,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                   <div class="card-header">
-                    <h3 class="card-title">Formulário de Visualização</h3>
+                    <h3 class="card-title">{% trans 'View Form' %}</h3>
                   </div>
                   <!-- /.card-header -->
                     <!-- Profile Image -->
@@ -54,7 +55,7 @@
                           {% endif %}
                         </div>
                         <h3 class="profile-username text-center">{{usuario.get_full_name}}</h3>
-                        <p class="text-muted text-center">Software Engineer</p>
+                        <p class="text-muted text-center">{% trans 'Software Engineer' %}</p>
                       </div>
                     <!-- /.card -->
                   <!-- form start -->
@@ -62,11 +63,11 @@
                       {% csrf_token %}
                     <div class="card-body">
                         <div class="form-group">
-                          <label>Nome:</label>
+                          <label>{% trans 'Name:' %}</label>
                           {{form.first_name}}
                         </div>
                         <div class="form-group">
-                          <label>Sobrenome:</label>
+                          <label>{% trans 'Last name:' %}</label>
                           {{form.last_name}}
                         </div>
                         <div class="form-group">
@@ -75,32 +76,32 @@
                         </div>
                         {% if request.resolver_match.url_name == 'Cadastro_usuario' %}
                         <div class="form-group">
-                          <label>Senha:</label>
+                          <label>{% trans 'Password:' %}</label>
                            {{form.password}}
                         </div>
                         {% endif %}
                           <div class="form-group">
-                            <label for="customFile">Foto de Perfil</label>
+                            <label for="customFile">{% trans 'Profile picture' %}</label>
                             <div class="custom-file">
                                <input type="file" class="custom-file-input" name="imagem" id="customFile" disabled>
-                              <label class="custom-file-label" for="customFile">Escolha o arquivo</label>
+                              <label class="custom-file-label" for="customFile">{% trans 'choose the file' %}</label>
                             </div>
                           </div>
                         <div class="checkbox">
                           <label>
-                              {{ form.is_active }} Ativo
+                              {{ form.is_active }} {% trans 'Active' %}
                           </label>
                         </div>
                         <div class="checkbox">
                           <label>
-                              {{ form.is_staff }} Administrador
+                              {{ form.is_staff }} {% trans 'Administrator' %}
                           </label>
                         </div>
                     </div>
                     <!-- /.card-body -->
                   <!-- /.box-body -->
                     <div class="card-footer">
-                      <a href="{% url 'users:Usuarios' %}"  class="btn btn-default">Voltar</a>
+                      <a href="{% url 'users:Usuarios' %}"  class="btn btn-default">{% trans 'Back' %}</a>
                     </div>
                   </form>
                 </div>

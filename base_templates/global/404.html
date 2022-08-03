@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block content %}
@@ -8,11 +9,11 @@
         <h2 class="headline text-warning"> 403</h2>
 
         <div class="error-content">
-          <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3>
+          <h3><i class="fas fa-exclamation-triangle text-warning"></i> {% trans 'Oops! Page not found.' %}</h3>
 
           <p>
-            We could not find the page you were looking for.
-            Meanwhile, you may <a href="{% url 'Home' %}">return to dashboard</a>.
+            {% trans 'We could not find the page you were looking for.' %}
+            % trans 'Meanwhile, you may' %} <a href="{% url 'Home' %}">% trans 'return to dashboard' %}</a>.
           </p>
         </div>
         <!-- /.error-content -->

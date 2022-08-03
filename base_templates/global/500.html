@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block content %}
@@ -8,11 +9,11 @@
         <h2 class="headline text-danger">500</h2>
 
         <div class="error-content">
-          <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Something went wrong.</h3>
+          <h3><i class="fas fa-exclamation-triangle text-danger"></i> % trans 'Oops! Something went wrong.' %}</h3>
 
           <p>
-            We will work on fixing that right away.
-            Meanwhile, you may <a href="{% url 'Home' %}">return to dashboard</a>.
+            {% trans 'We will work on fixing that right away. %}
+            {% trans 'Meanwhile, you may' %} <a href="{% url 'Home' %}">{% trans 'return to dashboard' %}</a>.
           </p>
         </div>
       </div>

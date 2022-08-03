@@ -12,6 +12,7 @@ from django.views.generic import ListView, DetailView, FormView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from rolepermissions.mixins import HasPermissionsMixin
+from django.utils.translation import gettext as _
 
 from users.mixins import UsuarioMixin
 
@@ -45,11 +46,11 @@ class CreationLinkView(HasPermissionsMixin, UsuarioMixin, CreateView):
         user = self.request.user
         if not user.is_staff:
             link.created_by = self.request.user
-        messages.success(self.request, f'Link gerado com sucesso.')
+        messages.success(self.request, _(f'Link generated successfully'))
         return super(CreationLinkView, self).form_valid(form, *args, **kwargs)
 
     def form_invalid(self, form, *args, **kwargs):
-        messages.error(self.request, 'Erro ao gerar o link encurtado')
+        messages.error(self.request, _('Error generating shortened link'))
         return super(CreationLinkView, self).form_invalid(form, *args, **kwargs)
 
     def get_success_url(self):
@@ -90,7 +91,7 @@ class LinksView(HasPermissionsMixin, UsuarioMixin, FormView, ListView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class DeleteLinkView(HasPermissionsMixin, DeleteView):
     required_permission = 'deletar_link'
-    sucess_message = 'Link deletado com sucesso!'
+    sucess_message = _('Link successfully deleted!')
 
 
     def get_object(self, queryset=None):
@@ -120,10 +121,10 @@ class BulkDeleteLinksView(HasPermissionsMixin, View):
         try:
             links = Link.objects.filter(expires_at__lt=now)
             self.model.objects.filter(pk__in=links).delete()
-            messages.success(request, 'Todos os links expirados foram removidos com sucesso!')
+            messages.success(request, _('All expired links were successfully removed!'))
             return HttpResponseRedirect(self.success_url)
         except Exception as e:
-            messages.error(request, f'Não foi possível remover os links: {type(e)}')
+            messages.error(request, _(f'Unable to remove links: {type(e)}'))
             return HttpResponseRedirect(self.success_url)
 
 

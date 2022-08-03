@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
 {% load permission_tags %}
 {% block content %}
@@ -7,7 +8,7 @@
          {% include 'menu.html' %}
         <section class="content-header">
           <h1>
-            Bem vindo a lista de usuário.
+            {% trans 'Welcome to the user list.' %}
           </h1>
         </section>
             {% include 'messages/custom_message.html' %}
@@ -19,16 +20,16 @@
                   <!-- /.card-header -->
                   <div class="card-body">
                     {% if usuarioLogado|can:'Cadastrar_usuario' %}
-                    <a href="{% url 'users:Cadastro_usuario' %}" class="btn btn-primary">Adicionar</a>
+                    <a href="{% url 'users:Cadastro_usuario' %}" class="btn btn-primary">{% trans 'Add' %}</a>
                     {% endif %}
                     <table id="usuarios" class="table table-bordered table-striped">
                       <thead>
                       <tr>
-                        <th>Id Usuário</th>
-                        <th>Nome completo</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Ações</th>
+                        <th>{% trans 'User ID' %}</th>
+                        <th>{% trans 'Full name' %}</th>
+                        <th>{% trans 'Email' %}</th>
+                        <th>{% trans 'Status' %}</th>
+                        <th>{% trans 'Actions' %}</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -58,20 +59,20 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h4 class="modal-title">Excluir usuário</h4>
+                                  <h4 class="modal-title">{% trans 'delete user' %}</h4>
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>Deseja excluir o Usuário: <span>{{ usuario.get_full_name }}</span></p>
+                                  <p>{% trans 'Do you want to delete the User:' %} <span>{{ usuario.get_full_name }}</span></p>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
 <!--                                  <a href="{% url 'users:Delete_usuario' pk=usuario.id %}" type="button" class="btn btn-danger">Excluir</a>-->
                                     <form method="POST" action="{% url 'users:Delete_usuario' pk=usuario.id %}" id="item-delete-form">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger" id="confirm-delete-item-button">Excluir</button>
+                                        <button type="submit" class="btn btn-danger" id="confirm-delete-item-button">{% trans 'Delete' %}</button>
                                     </form>
                                 </div>
 
@@ -82,7 +83,7 @@
                      {% endfor %}
                      {% else %}
                         <h4 class="box-title">
-                            Desculpe, nada foi encontrado!
+                            {% trans 'Sorry, nothing was found!' %}
                         </h4>
                      {% endif %}
 

@@ -1,12 +1,13 @@
 from django import forms
 from shortener.models import Link
 from users.models import Usuario
+from django.utils.translation import gettext_lazy as _
 
 
 class RegisterUrlModelForm(forms.ModelForm):
 
     url = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': "Seu URL aqui"}))
+        attrs={'class': 'form-control', 'placeholder': _("Your URL here")}))
     shortened_url = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'disabled': True}))
     created_by = forms.ModelChoiceField(required=False, queryset=Usuario.objects.all(), widget=forms.Select(
@@ -25,7 +26,7 @@ class RegisterUrlModelForm(forms.ModelForm):
 
 class ViewUrlModelForm(forms.ModelForm):
     url = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': "Seu URL aqui", 'disabled': True}))
+        attrs={'class': 'form-control', 'placeholder': _("Your URL here"), 'disabled': True}))
     shortened_url = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'disabled': True}))
     created_by = forms.ModelChoiceField(required=False, queryset=Usuario.objects.all(), widget=forms.Select(
@@ -41,9 +42,9 @@ class ViewUrlModelForm(forms.ModelForm):
 
 class FilterForm(forms.Form):
     filter_choices = (
-        ('', '-----  Selecione  -----'),
-        (1, 'Todos os Links'),
-        (2, 'Links expirado'),
-        (3, 'Links não expirado'),
+        ('', _('-----  Select  -----')),
+        (1, _('All Links')),
+        (2, _('Expired links')),
+        (3, _('Links not expired')),
     )
     filter = forms.ChoiceField(choices=filter_choices, widget=forms.Select(attrs={'class': 'form-control'}))
