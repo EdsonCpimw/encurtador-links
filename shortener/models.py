@@ -15,7 +15,7 @@ def time_expiration():
 
 
 class Link(models.Model):
-    url = models.CharField(max_length=200)
+    url = models.CharField(max_length=600)
     shortened_url = models.CharField(max_length=8, )
     created_by = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='created_by')
     data_creation = models.DateTimeField(auto_now_add=True)

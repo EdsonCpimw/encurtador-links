@@ -15,7 +15,7 @@ def upload_image_user(instance, filename):
 class Usuario(AbstractUser):
     password = models.CharField(_('password'), max_length=128)
     email = models.EmailField('Email', unique=True)
-    imagem = models.ImageField(upload_to=upload_image_user, blank=True)
+    image = models.ImageField(upload_to=upload_image_user, blank=True)
 
     is_staff = models.BooleanField(
         _('admin status'),

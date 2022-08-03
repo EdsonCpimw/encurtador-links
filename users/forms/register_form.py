@@ -30,7 +30,7 @@ class RegistroModelForm(forms.ModelForm):
     # imagem = forms.ImageField(widget=forms.TextInput(attrs={'class': 'custom-file-input', 'id': 'customFile'}))
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'password', 'is_staff', 'is_active', 'imagem']
+        fields = ['first_name', 'last_name', 'email', 'password', 'is_staff', 'is_active', 'image']
 
 
     def clean(self):
@@ -67,7 +67,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'is_staff', 'is_active', 'imagem']
+        fields = ['first_name', 'last_name', 'email', 'is_staff', 'is_active', 'image']
 
 
 
@@ -76,11 +76,11 @@ class ViewUserModelForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled', 'placeholder': _("Type your name")}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled', 'placeholder': _("Enter your Last Name")}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'disabled': 'disabled', 'placeholder': _("Type your e-mail")}))
-    imagem = forms.FileInput()
+    image = forms.FileInput()
     is_active = forms.BooleanField(required=False,)
     is_active.widget.attrs['disabled'] = True
     is_staff = forms.BooleanField(required=False,)
     is_staff.widget.attrs['disabled'] = True
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'is_staff', 'is_active', 'imagem']
+        fields = ['first_name', 'last_name', 'email', 'is_staff', 'is_active', 'image']
