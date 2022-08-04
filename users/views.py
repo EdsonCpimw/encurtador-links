@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -81,8 +82,8 @@ class CadastroUsuarioView(HasPermissionsMixin, UsuarioMixin, SuccessMessageMixin
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class UpdateUsuarioView(HasPermissionsMixin, UsuarioMixin, UpdateView):
-    required_permission = 'Atualizar_usuario'
+class UpdateUsuarioView(UsuarioMixin, UpdateView):
+    # required_permission = 'Atualizar_usuario'
     form_class = UserUpdateForm
     #fields = ['first_name', 'last_name', 'email', 'administrador', 'is_active', 'imagem']
     template_name = 'users/cadastro_usuario.html'
@@ -90,7 +91,14 @@ class UpdateUsuarioView(HasPermissionsMixin, UsuarioMixin, UpdateView):
 
     def get_object(self, queryset=None):
         usuario, created = Usuario.objects.update_or_create(id=self.kwargs['pk'])
-        return usuario
+        if self.request.user.is_active and self.request.user.is_staff:
+            return usuario
+        else:
+            if self.request.user.id == self.kwargs['pk']:
+                return usuario
+            else:
+                raise PermissionDenied
+
 
     def form_valid(self, form):
         user = form.save(commit=False)
@@ -103,7 +111,10 @@ class UpdateUsuarioView(HasPermissionsMixin, UsuarioMixin, UpdateView):
         return super(UpdateUsuarioView, self).form_invalid(form,  *args, **kwargs)
 
     def get_success_url(self):
-       return reverse_lazy('users:Usuarios')
+        if self.request.user.is_staff:
+            return reverse_lazy('users:Usuarios')
+        else:
+            return reverse_lazy('users:Update_usuario', kwargs={'pk': self.request.user.id})
 
 
 def delete_usuario_view(request, pk):
