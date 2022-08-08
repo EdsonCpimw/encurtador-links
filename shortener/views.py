@@ -12,6 +12,7 @@ from django.views.generic import ListView, DetailView, FormView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from rolepermissions.mixins import HasPermissionsMixin
+from utils.regex import remove_https
 from django.utils.translation import gettext as _
 
 from users.mixins import UsuarioMixin
@@ -41,9 +42,12 @@ class CreationLinkView(HasPermissionsMixin, UsuarioMixin, CreateView):
         return kwargs
 
     def form_valid(self, form, *args, **kwargs):
+        """TODO: domain atual só serve para ambiente local, mudar para ['SERVER_NAME'] em caso de deploy"""
         link = form.save(commit=False)
         link.shortened_url = ''
+        link.url = remove_https(link.url)
         user = self.request.user
+        link.domain = self.request.META['HTTP_HOST']
         if not user.is_staff:
             link.created_by = self.request.user
         messages.success(self.request, _(f'Link generated successfully'))

@@ -39,7 +39,7 @@ DEBUG = config('DEBUG', cast=bool)
 # DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.102']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.0.102', '192.168.0.101']
 
 
 # Application definition
