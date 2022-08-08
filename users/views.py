@@ -82,8 +82,8 @@ class CadastroUsuarioView(HasPermissionsMixin, UsuarioMixin, SuccessMessageMixin
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class UpdateUsuarioView(UsuarioMixin, UpdateView):
-    # required_permission = 'Atualizar_usuario'
+class UpdateUsuarioView(HasPermissionsMixin, UsuarioMixin, UpdateView):
+    required_permission = 'Atualizar_usuario'
     form_class = UserUpdateForm
     #fields = ['first_name', 'last_name', 'email', 'administrador', 'is_active', 'imagem']
     template_name = 'users/cadastro_usuario.html'

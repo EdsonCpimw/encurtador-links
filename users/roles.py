@@ -18,6 +18,7 @@ class Administrador(AbstractUserRole):
 
 class Usuario(AbstractUserRole):
     available_permissions = {
+        'Atualizar_usuario': True,
         'Cadastrar_link': True,
         'listar_links': True,
         'deletar_link': True,
