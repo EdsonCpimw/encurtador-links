@@ -47,7 +47,7 @@ class CreationLinkView(HasPermissionsMixin, UsuarioMixin, CreateView):
         link.shortened_url = ''
         link.url = remove_https(link.url)
         user = self.request.user
-        link.domain = self.request.META['HTTP_HOST']
+        link.domain = self.request.META['SERVER_NAME']
         if not user.is_staff:
             link.created_by = self.request.user
         messages.success(self.request, _(f'Link generated successfully'))
