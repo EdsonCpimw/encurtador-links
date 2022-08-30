@@ -1,0 +1,7 @@
+#DATABASE_URL="postgres://usuario:se...@127.0.0.1:5432/db_meudb"   // exemplo de configuração para postegres
+#DATABASE_URL=sqlite:///db.sqlite3
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost,192.168.XX.XXX,
+# SECRET_KEY = XXXX
+RECAPTCHA_PUBLIC_KEY=XXXXXX
+RECAPTCHA_PRIVATE_KEY=XXXXX
