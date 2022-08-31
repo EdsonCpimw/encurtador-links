@@ -8,8 +8,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMixin
-from users.forms import RegistroModelForm, UserUpdateForm, ViewUserModelForm
-from users.forms.register_form import UserAuthenticationForm
+from users.forms import UserUpdateForm, ViewUserModelForm, UserAuthenticationForm, RegisterModelForm, \
+    CadastroUsuarioModelForm
 from users.mixins import UsuarioMixin
 from users.models import Usuario
 from rolepermissions.mixins import HasPermissionsMixin
@@ -19,8 +19,9 @@ from django.utils.translation import gettext as _
 class LoginUserView(LoginView):
     form_class = UserAuthenticationForm
 
+
 class RegisterUsuarioView(CreateView):
-    form_class = RegistroModelForm
+    form_class = RegisterModelForm
     template_name = 'registration/register_usuario.html'
 
     def form_valid(self, form, *args, **kwargs):
@@ -61,7 +62,7 @@ class UsuariosView(HasPermissionsMixin, UsuarioMixin, ListView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class CadastroUsuarioView(HasPermissionsMixin, UsuarioMixin, SuccessMessageMixin, CreateView):
     required_permission = 'Cadastrar_usuario'
-    form_class = RegistroModelForm
+    form_class = CadastroUsuarioModelForm
     template_name = 'users/cadastro_usuario.html'
     # success_message = 'Usuário cadastrado com sucesso.'
     # success_url = reverse_lazy('users:Usuarios')

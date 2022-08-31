@@ -1,1 +1,2 @@
-from .register_form import RegistroModelForm, UserUpdateForm, ViewUserModelForm
+from .register_form import RegisterModelForm, UserUpdateForm, ViewUserModelForm, UserAuthenticationForm, \
+    CadastroUsuarioModelForm
