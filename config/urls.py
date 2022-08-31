@@ -29,7 +29,7 @@ urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/register/', RegisterUsuarioView.as_view(), name='Register_usuario'),
     path('users/', include(users_urls)),
-    # path('admin/', admin.site.urls),
+    # path('siteEncurtadorAdmin/', admin.site.urls),
     path('', include(links_urls)),
 ]
 
