@@ -18,7 +18,7 @@ Site para encurtar links
 $ git clone ...
 ```
 
-2 - Crie / ative um ambiente virtual com pipenv
+2 - Crie / ative um ambiente virtual
 ```
 $ python3 -m venv venv
 ```
