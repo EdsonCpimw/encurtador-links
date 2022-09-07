@@ -47,3 +47,9 @@ color: #dc3545;
 .card-footer a {
     text-decoration: none;
 }
+
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    color: #fff !important;
+    background-color: #343a40;
+}

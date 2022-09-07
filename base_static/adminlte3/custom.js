@@ -12,9 +12,11 @@ $("#usuarios").DataTable({
 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 });
 
-$(document).ready(function()
-{
-  $('#select2').select2();
+$(document).ready(function(){
+      $('#select2').select2();
+      $('.select2bs4').select2({
+      theme: 'bootstrap4',
+    })
 });
 
 $(document).ready( function () {
@@ -43,3 +45,4 @@ function filtroLinks(){
         }
     });
 }
+

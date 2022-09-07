@@ -11,7 +11,7 @@ class RegisterUrlModelForm(forms.ModelForm):
     shortened_url = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'disabled': True}))
     created_by = forms.ModelChoiceField(required=False, queryset=Usuario.objects.all(), widget=forms.Select(
-        attrs={'class': 'form-control', 'id': 'select2'}))
+        attrs={'class': 'form-control  select2bs4', }))
     
     class Meta:
         model = Link
@@ -47,4 +47,5 @@ class FilterForm(forms.Form):
         (2, _('Expired links')),
         (3, _('Links not expired')),
     )
-    filter = forms.ChoiceField(choices=filter_choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    filter = forms.ChoiceField(choices=filter_choices, widget=forms.Select(
+        attrs={'class': 'form-control'}))
