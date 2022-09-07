@@ -77,41 +77,6 @@
     <script src="{% static 'adminlte3/plugins/bs-custom-file-input/bs-custom-file-input.min.js' %}"></script>
     <!-- Select2 -->
     <script src="{% static 'adminlte3/plugins/select2/js/select2.full.min.js' %}"></script>
-    <script>
-        $('[data-widget="pushmenu"]').on('click', function (){
-                $('[data-widget="pushmenu"]').PushMenu("toggle");
-            });
-    </script>
-    <script>
-        $(function () {
-          bsCustomFileInput.init();
-        });
-    </script>
-    <script>
-      $(function () {
-        $("#usuarios").DataTable({
-          "responsive": true, "lengthChange": false, "autoWidth": false,"bDestroy": true
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      });
-    </script>
-<!--    <script>-->
-<!--        function delete_user(selected_user){-->
-<!--        document.getElementById("item-delete-form").action = selected_user.href-->
-<!--        }-->
-<!--    </script>-->
-    <script>
-        $(document).ready(function()
-        {
-          $('#select2').select2();
-        });
-    </script>
-    <script>
-        $(document).ready( function () {
-          var table = $('#example').DataTable();
-
-          $(".dataTables_empty").text("Desculpe, nada foi encontrado!");
-        } );
-
-    </script>
+    <script src="{% static 'adminlte3/custom.js' %}"></script>
   </body>
 </html>
